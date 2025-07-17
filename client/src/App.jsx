@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     const fetchRelayStates = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/relays');
+        const response = await axios.get('https://relays-kuub.onrender.com/api/relays');
         setRelayStates(response.data);
       } catch (err) {
         console.error('GET /api/relays error:', err.response?.data || err.message);
@@ -25,7 +25,7 @@ function App() {
   const toggleRelay = async (relay) => {
     try {
       const newState = !relayStates[`relay${relay}`];
-      await axios.post('http://localhost:3000/api/relays', { relay, state: newState });
+      await axios.post('https://relays-kuub.onrender.com/api/relays', { relay, state: newState });
       setRelayStates((prev) => ({ ...prev, [`relay${relay}`]: newState }));
     } catch (err) {
       console.error('POST /api/relays error:', err.response?.data || err.message);
